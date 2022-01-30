@@ -5,17 +5,12 @@ header('Content-Type:text/html; charset-utf-8');
 session_start();
 
 require_once 'config.php';
-require_once 'core/base/internal_settings.php';
+require_once 'core/base/settings/internal_settings.php';
 
-function load1 ($className)
-{
-    $className = str_replace('\\', '/', $className);
-    include $className.".php";
+
+try{
+    (new \n1\A());
 }
-
-spl_autoload_register("load1");
-
-(new \n1\A());
-
-echo 'hello';
-
+catch (RoutException $e){
+    exit($e->getMessage());
+}

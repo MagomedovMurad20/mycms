@@ -23,5 +23,17 @@ const USER_CSS_JS = [
     'scripts'=> []
 ];
 
+function autoLoadMainClasses ($className)
+{
+    $className = str_replace('\\', '/', $className);
+
+    if(!include_once $className.".php"){
+        throw new RouteException("не верное имя класса" .$className);
+    }
+
+}
+
+spl_autoload_register("autoLoadMainClasses");
+
 
 
